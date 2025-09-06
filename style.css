@@ -1,10 +1,16 @@
 /* ===================================
    ENIGMA E-CELL LANDING PAGE - CSS
-   Enhanced Dark Theme with Space Design
+   Enhanced Dark Theme with Multilingual Animation
    =================================== */
 
 /* === ROOT VARIABLES === */
 :root {
+  /* MODIFIED: Updated font family to use Inter for modern typography and multilingual support */
+  /* Inter font provides excellent glyph coverage for Hindi, Kannada, Marathi, Gujarati, and Bengali scripts */
+  --font-family-primary: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-family-display: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-family-mono: 'Inter', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
   /* Enigma E-Cell Dark Theme Color Palette */
   --color-bg-primary: #0b0b0b;
   --color-bg-secondary: #0f0f10;
@@ -19,10 +25,6 @@
   --color-border: rgba(255, 255, 255, 0.1);
   --color-border-light: rgba(255, 255, 255, 0.05);
 
-  /* Typography */
-  --font-display: 'Montserrat', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  
   /* Font Sizes */
   --font-size-xs: 0.75rem;
   --font-size-sm: 0.875rem;
@@ -60,6 +62,10 @@
   --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   
+  /* ADDED: Multilingual animation timing variables - easily adjustable */
+  --multilingual-duration: 0.8s;
+  --multilingual-delay: 3s;
+  
   /* Hero Background Gradient */
   --hero-gradient: radial-gradient(ellipse at 70% 50%,
       rgba(245, 164, 0, 0.15) 0%,
@@ -88,8 +94,9 @@ html {
   font-size: 16px;
 }
 
+/* MODIFIED: Updated body font to use Inter for better multilingual rendering */
 body {
-  font-family: var(--font-body);
+  font-family: var(--font-family-primary); /* Changed to Inter for modern typography */
   background-color: var(--color-bg-primary);
   color: var(--color-text-primary);
   line-height: 1.6;
@@ -111,6 +118,7 @@ body {
   z-index: 10000;
   transition: top 0.3s;
   font-size: var(--font-size-sm);
+  font-family: var(--font-family-primary); /* Updated to Inter */
 }
 
 .skip-link:focus {
@@ -139,7 +147,6 @@ body {
   border-bottom: 1px solid transparent;
 }
 
-/* Navbar when scrolled */
 .navbar.scrolled {
   background-color: rgba(11, 11, 11, 0.95);
   border-bottom: 1px solid var(--color-border);
@@ -152,7 +159,7 @@ body {
   height: var(--nav-height);
 }
 
-/* Logo Styles */
+/* Logo Styles - Updated font */
 .logo-link {
   display: flex;
   align-items: center;
@@ -162,13 +169,13 @@ body {
 }
 
 .logo-img {
-  height: 32px;
+  height: 102px;
   width: auto;
   transition: var(--transition-smooth);
 }
 
 .logo-text {
-  font-family: var(--font-display);
+  font-family: var(--font-family-display); /* Updated to Inter */
   font-size: var(--font-size-2xl);
   font-weight: 300;
   color: var(--color-text-primary);
@@ -192,11 +199,12 @@ body {
 .nav-link {
   color: var(--color-text-secondary);
   text-decoration: none;
-  font-weight: 400;
+  font-weight: 700;
   font-size: var(--font-size-base);
   position: relative;
   transition: var(--transition-smooth);
   padding: var(--space-2) 0;
+  font-family: var(--font-family-primary); /* Updated to Inter */
 }
 
 .nav-link:hover,
@@ -205,7 +213,6 @@ body {
   outline: none;
 }
 
-/* Animated underline effect */
 .nav-link::after {
   content: '';
   position: absolute;
@@ -242,7 +249,6 @@ body {
   border-radius: 2px;
 }
 
-/* Hamburger animation */
 .mobile-menu-btn[aria-expanded="true"] .hamburger-line:nth-child(1) {
   transform: rotate(45deg) translate(6px, 6px);
 }
@@ -265,7 +271,6 @@ body {
   overflow: hidden;
 }
 
-/* Hero Background */
 .hero-background {
   position: absolute;
   top: 0;
@@ -294,7 +299,6 @@ body {
   animation: bokehMove 20s ease-in-out infinite;
 }
 
-/* Animated stars background */
 .stars-container {
   position: absolute;
   top: 0;
@@ -314,7 +318,6 @@ body {
   box-shadow: 0 0 6px var(--color-accent-amber);
 }
 
-/* Background animation */
 @keyframes bokehMove {
   0%, 100% { 
     background-position: 0% 50%; 
@@ -349,9 +352,9 @@ body {
   margin-bottom: var(--space-8);
 }
 
-/* Hero Title with Letter Animation */
+/* MODIFIED: Updated hero title to support multilingual animation instead of individual letters */
 .hero-title {
-  font-family: var(--font-display);
+  font-family: var(--font-family-display); /* Changed to Inter */
   font-size: clamp(3rem, 8vw, 8rem);
   font-weight: 200;
   color: var(--color-text-primary);
@@ -359,55 +362,74 @@ body {
   margin: 0;
   display: flex;
   justify-content: center;
-  gap: clamp(0.5rem, 2vw, 2rem);
   flex-wrap: wrap;
 }
 
-/* Individual letter animation */
-.hero-letter {
+/* ADDED: Multilingual text animation styles */
+/* This replaces the individual letter animation with smooth multilingual switching */
+.multilingual-text {
   display: inline-block;
+  font-family: var(--font-family-display);
+  font-weight: inherit;
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity var(--multilingual-duration) ease-in-out, 
+              transform var(--multilingual-duration) ease-in-out;
+}
+
+/* Animation states for multilingual switching */
+.multilingual-text.fade-out {
   opacity: 0;
-  transform: translateY(50px);
-  animation: letterFadeIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-  position: relative;
+  transform: scale(0.95);
 }
 
-/* Staggered animation delays for each letter */
-.hero-letter:nth-child(1) { animation-delay: 0.1s; }
-.hero-letter:nth-child(2) { animation-delay: 0.2s; }
-.hero-letter:nth-child(3) { animation-delay: 0.3s; }
-.hero-letter:nth-child(4) { animation-delay: 0.4s; }
-.hero-letter:nth-child(5) { animation-delay: 0.5s; }
-.hero-letter:nth-child(6) { animation-delay: 0.6s; }
-
-/* Sheen effect on letters */
-.hero-letter::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-  animation: sheen 3s ease-in-out 2s infinite;
+.multilingual-text.fade-in {
+  opacity: 1;
+  transform: scale(1.05);
 }
 
-@keyframes letterFadeIn {
-  to {
+/* ADDED: Keyframes for smooth multilingual text transitions */
+/* Provides smooth fade and scale effect for better UX */
+@keyframes multilingualFadeOut {
+  from {
     opacity: 1;
-    transform: translateY(0);
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95);
   }
 }
 
-@keyframes sheen {
-  0% { left: -100%; }
-  50% { left: 100%; }
-  100% { left: 100%; }
+@keyframes multilingualFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
-/* Hero Subtitle */
+/* ADDED: Reduced motion support for accessibility */
+/* Users who prefer reduced motion will see simple text changes without animation */
+@media (prefers-reduced-motion: reduce) {
+  .multilingual-text {
+    transition: none;
+    transform: none !important;
+  }
+  
+  .multilingual-text.fade-out,
+  .multilingual-text.fade-in {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Hero Subtitle - Updated font */
 .hero-subtitle {
-  font-family: var(--font-body);
+  font-family: var(--font-family-primary); /* Updated to Inter */
   font-size: clamp(0.9rem, 2vw, 1.2rem);
   color: var(--color-text-muted);
   letter-spacing: 0.15em;
@@ -469,7 +491,7 @@ section {
 }
 
 .section-title {
-  font-family: var(--font-display);
+  font-family: var(--font-family-display); /* Updated to Inter */
   font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 300;
   color: var(--color-text-primary);
@@ -503,7 +525,6 @@ section {
   padding: var(--space-6);
 }
 
-/* Quote Column Styling */
 .quote-column {
   background: linear-gradient(135deg, rgba(181, 40, 27, 0.1), rgba(245, 164, 0, 0.05));
   border-radius: var(--radius-lg);
@@ -515,7 +536,7 @@ section {
 }
 
 .quote-text {
-  font-family: var(--font-display);
+  font-family: var(--font-family-display); /* Updated to Inter */
   font-size: var(--font-size-lg);
   font-style: italic;
   color: var(--color-text-secondary);
@@ -524,7 +545,7 @@ section {
 }
 
 .quote-author {
-  font-family: var(--font-body);
+  font-family: var(--font-family-primary); /* Updated to Inter */
   font-size: var(--font-size-sm);
   font-weight: 600;
   color: var(--color-accent-amber);
@@ -537,6 +558,7 @@ section {
   line-height: 1.7;
   color: var(--color-text-secondary);
   margin: 0;
+  font-family: var(--font-family-primary); /* Updated to Inter */
 }
 
 .bold-text {
@@ -562,7 +584,7 @@ section {
 }
 
 .stat-number {
-  font-family: var(--font-display);
+  font-family: var(--font-family-display); /* Updated to Inter */
   font-size: var(--font-size-4xl);
   font-weight: 600;
   color: var(--color-accent-amber);
@@ -574,21 +596,23 @@ section {
   color: var(--color-text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.1em;
+  font-family: var(--font-family-primary); /* Updated to Inter */
 }
 
 /* === TEAM SECTION === */
+/* ADDED: Semantic team section styles using modern CSS Grid and typography */
 .team-section {
   background-color: var(--color-bg-primary);
 }
 
 .team-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid for team cards */
   gap: var(--space-6);
   margin-top: var(--space-8);
 }
 
-/* Team Card */
+/* Team card styling with hover effects and modern typography */
 .team-card {
   background-color: var(--color-bg-card);
   border-radius: var(--radius-lg);
@@ -628,7 +652,7 @@ section {
   z-index: 2;
 }
 
-/* Team Avatar */
+/* Team avatar using figure element for semantic structure */
 .team-avatar {
   margin: 0 auto var(--space-4) auto;
   width: 80px;
@@ -643,14 +667,18 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-display);
+  font-family: var(--font-family-display); /* Updated to Inter for better rendering */
   font-weight: 600;
   font-size: var(--font-size-xl);
   color: var(--color-text-primary);
 }
 
+.team-info {
+  /* Container for team member information */
+}
+
 .team-name {
-  font-family: var(--font-display);
+  font-family: var(--font-family-display); /* Updated to Inter */
   font-size: var(--font-size-xl);
   font-weight: 500;
   color: var(--color-text-primary);
@@ -662,6 +690,7 @@ section {
   color: var(--color-accent-red);
   font-weight: 500;
   margin: 0 0 var(--space-4) 0;
+  font-family: var(--font-family-primary); /* Updated to Inter */
 }
 
 .team-bio {
@@ -669,8 +698,10 @@ section {
   color: var(--color-text-secondary);
   margin: 0 0 var(--space-4) 0;
   line-height: 1.6;
+  font-family: var(--font-family-primary); /* Updated to Inter */
 }
 
+/* Social links for team members */
 .team-social {
   display: flex;
   justify-content: center;
@@ -703,7 +734,6 @@ section {
   margin-top: var(--space-8);
 }
 
-/* Contact Form Container */
 .contact-form-container {
   background-color: var(--color-bg-card);
   padding: var(--space-8);
@@ -717,7 +747,6 @@ section {
   gap: var(--space-4);
 }
 
-/* Form Group */
 .form-group {
   display: flex;
   flex-direction: column;
@@ -728,9 +757,9 @@ section {
   font-size: var(--font-size-sm);
   font-weight: 500;
   color: var(--color-text-primary);
+  font-family: var(--font-family-primary); /* Updated to Inter */
 }
 
-/* Form Controls */
 .form-control {
   background-color: var(--color-bg-primary);
   border: 1px solid var(--color-border);
@@ -739,7 +768,7 @@ section {
   color: var(--color-text-primary);
   font-size: var(--font-size-base);
   transition: var(--transition-smooth);
-  font-family: var(--font-body);
+  font-family: var(--font-family-primary); /* Updated to Inter */
 }
 
 .form-control:focus {
@@ -757,18 +786,17 @@ textarea.form-control {
   min-height: 120px;
 }
 
-/* Error Message */
 .error-message {
   font-size: var(--font-size-xs);
   color: var(--color-accent-red);
   display: none;
+  font-family: var(--font-family-primary); /* Updated to Inter */
 }
 
 .error-message.show {
   display: block;
 }
 
-/* Form validation states */
 .form-control.error {
   border-color: var(--color-accent-red);
   box-shadow: 0 0 0 3px rgba(181, 40, 27, 0.1);
@@ -779,7 +807,6 @@ textarea.form-control {
   box-shadow: 0 0 0 3px rgba(245, 164, 0, 0.1);
 }
 
-/* Success Message */
 .success-message {
   background-color: rgba(245, 164, 0, 0.1);
   border: 1px solid var(--color-accent-amber);
@@ -789,6 +816,7 @@ textarea.form-control {
   margin-top: var(--space-4);
   display: none;
   font-size: var(--font-size-sm);
+  font-family: var(--font-family-primary); /* Updated to Inter */
 }
 
 .success-message.show {
@@ -811,7 +839,7 @@ textarea.form-control {
 }
 
 .contact-item-title {
-  font-family: var(--font-display);
+  font-family: var(--font-family-display); /* Updated to Inter */
   font-size: var(--font-size-lg);
   font-weight: 500;
   color: var(--color-accent-red);
@@ -822,6 +850,7 @@ textarea.form-control {
   color: var(--color-text-secondary);
   margin: 0;
   line-height: 1.6;
+  font-family: var(--font-family-primary); /* Updated to Inter */
 }
 
 .contact-item-text a {
@@ -836,7 +865,6 @@ textarea.form-control {
   outline: none;
 }
 
-/* Social Links */
 .social-links {
   display: flex;
   gap: var(--space-4);
@@ -872,7 +900,7 @@ textarea.form-control {
 }
 
 .footer-title {
-  font-family: var(--font-display);
+  font-family: var(--font-family-display); /* Updated to Inter */
   font-size: var(--font-size-xl);
   font-weight: 300;
   color: var(--color-text-primary);
@@ -880,7 +908,7 @@ textarea.form-control {
 }
 
 .footer-subtitle {
-  font-family: var(--font-display);
+  font-family: var(--font-family-display); /* Updated to Inter */
   font-size: var(--font-size-base);
   font-weight: 500;
   color: var(--color-accent-red);
@@ -892,6 +920,7 @@ textarea.form-control {
   margin: 0 0 var(--space-4) 0;
   line-height: 1.6;
   font-size: var(--font-size-sm);
+  font-family: var(--font-family-primary); /* Updated to Inter */
 }
 
 .footer-links {
@@ -909,6 +938,7 @@ textarea.form-control {
   text-decoration: none;
   transition: var(--transition-smooth);
   font-size: var(--font-size-sm);
+  font-family: var(--font-family-primary); /* Updated to Inter */
 }
 
 .footer-link:hover,
@@ -935,6 +965,7 @@ textarea.form-control {
   color: var(--color-text-muted);
   font-size: var(--font-size-xs);
   margin: 0;
+  font-family: var(--font-family-primary); /* Updated to Inter */
 }
 
 /* === BACK TO TOP BUTTON === */
@@ -979,7 +1010,7 @@ textarea.form-control {
   border-radius: var(--radius-base);
   color: var(--color-text-primary);
   cursor: pointer;
-  font-family: var(--font-body);
+  font-family: var(--font-family-primary); /* Updated to Inter */
   font-size: var(--font-size-base);
   font-weight: 500;
   padding: var(--space-4) var(--space-6);
@@ -1100,9 +1131,10 @@ textarea.form-control {
     opacity: 0.3;
   }
 
+  /* MODIFIED: Mobile hero title layout for multilingual text */
   .hero-title {
-    flex-direction: column;
-    gap: var(--space-2);
+    justify-content: center;
+    text-align: center;
   }
 
   /* Contact grid */
@@ -1115,7 +1147,7 @@ textarea.form-control {
     padding: var(--space-6);
   }
 
-  /* Team grid */
+  /* Team grid - responsive for mobile */
   .team-grid {
     grid-template-columns: 1fr;
     gap: var(--space-4);
@@ -1172,27 +1204,12 @@ textarea.form-control {
   outline-offset: 2px;
 }
 
-/* Reduced motion for accessibility */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-  
-  .hero-letter {
-    opacity: 1;
-    transform: none;
-  }
-  
-  .hero-subtitle {
-    opacity: 1;
-  }
-  
-  .scroll-indicator {
-    opacity: 1;
+/* ADDED: High contrast mode support for better accessibility */
+@media (prefers-contrast: high) {
+  :root {
+    --color-border: rgba(255, 255, 255, 0.3);
+    --color-text-secondary: #ffffff;
+    --color-text-muted: #cccccc;
   }
 }
 
@@ -1214,65 +1231,6 @@ textarea.form-control {
     background: white !important;
     color: black !important;
   }
-}
-
-/* High contrast mode support */
-@media (prefers-contrast: high) {
-  :root {
-    --color-border: rgba(255, 255, 255, 0.3);
-    --color-text-secondary: #ffffff;
-    --color-text-muted: #cccccc;
-  }
-}
-
-/* === LOADING ANIMATIONS === */
-@keyframes shimmer {
-  0% {
-    background-position: -200px 0;
-  }
-  100% {
-    background-position: calc(200px + 100%) 0;
-  }
-}
-
-.loading {
-  background: linear-gradient(90deg, var(--color-bg-card) 25%, var(--color-border) 50%, var(--color-bg-card) 75%);
-  background-size: 200px 100%;
-  animation: shimmer 1.5s infinite;
-}
-
-/* === INTERSECTION OBSERVER ANIMATIONS === */
-.fade-in-up {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.6s ease-out;
-}
-
-.fade-in-up.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.fade-in-left {
-  opacity: 0;
-  transform: translateX(-30px);
-  transition: all 0.6s ease-out;
-}
-
-.fade-in-left.visible {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.fade-in-right {
-  opacity: 0;
-  transform: translateX(30px);
-  transition: all 0.6s ease-out;
-}
-
-.fade-in-right.visible {
-  opacity: 1;
-  transform: translateX(0);
 }
 
 /* === UTILITIES === */
@@ -1298,4 +1256,20 @@ textarea.form-control {
 
 .visible {
   display: block;
+}
+
+/* === LOADING ANIMATIONS === */
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+.loading {
+  background: linear-gradient(90deg, var(--color-bg-card) 25%, var(--color-border) 50%, var(--color-bg-card) 75%);
+  background-size: 200px 100%;
+  animation: shimmer 1.5s infinite;
 }
